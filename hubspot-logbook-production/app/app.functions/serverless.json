@@ -1,0 +1,60 @@
+{
+  "appFunctions": {
+    "getLogbookData": {
+      "file": "get-logbook-data.js",
+      "secrets": ["HUBSPOT_SERVERLESS_FUNCTION_TOKEN"],
+      "endpoint": {
+        "method": ["GET"],
+        "path": "get-logbook-data"
+      }
+    },
+    "getPipelineById": {
+      "file": "get-pipeline-by-id.js",
+      "secrets": ["HUBSPOT_SERVERLESS_FUNCTION_TOKEN"],
+      "endpoint": {
+        "method": ["GET"],
+        "path": "get-pipeline-by-id"
+      }
+    },
+    "getTicketByPipeline": {
+      "file": "get-tickets-by-pipeline.js",
+      "secrets": ["HUBSPOT_SERVERLESS_FUNCTION_TOKEN"],
+      "endpoint": {
+        "method": ["GET"],
+        "path": "get-ticket-by-pipeline"
+      }
+    },
+    "getTicketById": {
+      "file": "get-ticket-by-id.js",
+      "secrets": ["HUBSPOT_SERVERLESS_FUNCTION_TOKEN"],
+      "endpoint": {
+        "method": ["GET"],
+        "path": "get-ticket-by-id"
+      }
+    },
+    "getTicketByEmail": {
+      "file": "get-ticket-by-email.js",
+      "secrets": ["HUBSPOT_SERVERLESS_FUNCTION_TOKEN"],
+      "endpoint": {
+        "method": ["GET"],
+        "path": "get-ticket-by-email"
+      }
+    },
+    "getUserByUserId": {
+      "file": "get-user-by-user-id.js",
+      "secrets": ["HUBSPOT_SERVERLESS_FUNCTION_TOKEN"],
+      "endpoint": {
+        "method": ["GET"],
+        "path": "get-user-by-user-id"
+      }
+    },
+    "getContactById": {
+      "file": "get-contact-by-id.js",
+      "secrets": ["HUBSPOT_SERVERLESS_FUNCTION_TOKEN"],
+      "endpoint": {
+        "method": ["GET"],
+        "path": "get-contact-by-id"
+      }
+    }
+  }
+}

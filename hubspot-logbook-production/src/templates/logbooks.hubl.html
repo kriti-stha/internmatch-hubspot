@@ -1,0 +1,54 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  label: logbooks
+-->
+
+{% set template_css = "../styles/membership.css" %}
+  {% set font_config = {
+    "Source Serif Pro": ["600"],
+    "Montserrat": ["400", "500", "700"]
+  } %}
+
+{% extends "./layouts/membership-base.hubl.html" %}
+
+{% block body %}
+
+  {% if request_contact.is_logged_in %}
+    {% set membership_contact = request_contact.identifier %}
+    Welcome back, {{ membership_contact }}
+
+    {% module "logbook_module" 
+    path="@hubspot/logbook",
+    membership_contact=membership_contact
+  %}
+
+  {% else %}
+      <section class="section-wrapper section-wrapper--large">
+      <p>The page you are trying to view is only available to registered users, please sign in below.</p>
+    
+      {% member_login "login_form"
+        extra_classes="form-wrapper form-wrapper--membership-login",
+        email_label="Email",
+        password_label="Password",
+        remember_me_label="Remember Me",
+        reset_password_text="Forgot your password?",
+        submit_button_text="Login",
+        show_password="Show Password"
+      %}
+
+    </section>
+  {% endif %}
+    
+  <script>
+    window.req_contact = {
+      contact: {{ request_contact|tojson  }},
+    };
+    
+    console.log("contact Data:", window.req_contact.contact);
+  </script>
+    
+  
+  
+    
+{% endblock body %}
