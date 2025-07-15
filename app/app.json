@@ -1,6 +1,6 @@
 {
   "name": "Logbook Serverless functions",
-  "description": "Serverless Functions for Logbook in Hubspot",
+  "description": "Serverless Functions for Logbook in Hubspot.",
   "scopes": [
     "crm.objects.contacts.read",
     "crm.objects.contacts.write",
