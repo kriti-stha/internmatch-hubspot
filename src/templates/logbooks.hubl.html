@@ -18,8 +18,8 @@
     {% set membership_contact = request_contact.identifier %}
     Welcome back, {{ membership_contact }}
     <p>Above the module</p>
-    {% module "logbook_module" 
-    path="@hubspot/logbook",
+    {% module "Logbook" 
+    path="Logbook",
     membership_contact=membership_contact
   %}
   <p>Below the module</p>
@@ -43,6 +43,12 @@
         submit_button_text="Login",
         show_password="Show Password"
       %}
+
+      {% dnd_area "dnd_area", class="main" %}
+        {% dnd_section %}
+    
+        {% end_dnd_section %}
+      {% end_dnd_area %}
 
     </section>
   {% endif %}
