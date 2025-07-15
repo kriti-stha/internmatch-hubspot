@@ -18,9 +18,10 @@
     {% set membership_contact = request_contact.identifier %}
     <p>Welcome back--> {{ membership_contact }}</p>
 
+
   {% module "Logbook", 
     path="../components/modules/Logbook",
-    membership_contact=membership_contact
+    membership_contact=membership_contact,
   %}
    
   {% dnd_area "dnd_area", class="main" %}

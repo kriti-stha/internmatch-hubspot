@@ -17,6 +17,8 @@ export function Component(props) {
   const { hublParameters, fieldValues } = props || {}
   const membership_contact = hublParameters?.membership_contact || ""
 
+  console.log("props==>", props)
+
   return (
     <div>
       <Island
