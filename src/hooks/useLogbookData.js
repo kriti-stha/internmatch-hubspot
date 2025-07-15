@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react"
 import { LOGBOOKS_PIPELINE } from "../helpers/constants.js"
 
-export const useLogbookData = () => {
+export const useLogbookData = (contactEmail) => {
   const [logbookData, setLogbookData] = useState({})
   const [pipelineStages, setPipelineStages] = useState({})
+  const [logbookTicketsByEmail, setLogbookTicketsByEmail] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
@@ -17,6 +18,26 @@ export const useLogbookData = () => {
     } catch (error) {
       setError(error.message)
       setLogbookData({})
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  // New: Fetch tickets by pipeline for the given contactEmail
+  const fetchTicketsByEmail = async () => {
+    if (!contactEmail) {
+      setLogbookTicketsByEmail([])
+      return
+    }
+    setLoading(true)
+    try {
+      const response = await fetch(`/hs/serverless/get-ticket-by-email?email=${encodeURIComponent(contactEmail)}`)
+      const responseData = await response.json()
+      setLogbookTicketsByEmail(responseData?.tickets || [])
+      setError(null)
+    } catch (error) {
+      setError(error.message)
+      setLogbookTicketsByEmail([])
     } finally {
       setLoading(false)
     }
@@ -39,16 +60,21 @@ export const useLogbookData = () => {
   }
 
   const refetchData = async () => {
-    await Promise.all([fetchTicketsByPipelineId(), fetchPipelineStages()])
+    await Promise.all([
+      fetchTicketsByPipelineId(),
+      fetchPipelineStages(),
+      fetchTicketsByEmail(), // New fetch
+    ])
   }
 
   useEffect(() => {
     refetchData()
-  }, [])
+  }, [contactEmail]) // Add contactEmail as dependency
 
   return {
     logbookData,
     pipelineStages,
+    logbookTicketsByEmail, // Expose new data
     loading,
     error,
     refetchData,

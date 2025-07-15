@@ -8,31 +8,27 @@ import { createTableColumns } from "../../utils/tableColumns.js"
 import DataTable from "./DataTable.jsx"
 import { logInfo } from "@hubspot/cms-components"
 
-const Logbooks = ({
-  fieldValues,
-  membership_contact,
-  hublParameters,
-  props,
-}) => {
-  const { logbookData, pipelineStages, loading, error } = useLogbookData()
+const Logbooks = ({ fieldValues, hublParameters }) => {
+  const { logbookData, pipelineStages, loading, error } = useLogbookData(contactEmail)
   const [selectedTicket, setSelectedTicket] = useState(null)
   const [hoveredRow, setHoveredRow] = useState(null)
   const [isClient, setIsClient] = useState(false)
+  const [contactEmail, setContactEmail] = useState(contact?.identifier || "")
 
   const [contact, setContact] = useState(null)
 
   useEffect(() => {
     if (window.req_contact && window.req_contact.contact) {
-      setContact(window.req_contact.contact)
+      setContact(window?.req_contact?.contact || {})
+      setContactEmail()
     }
   }, [])
 
   console.log("INFO==>", {
     fieldValues,
-    membership_contact,
     hublParameters,
-    props,
     contact,
+    contactEmail,
   })
 
   useEffect(() => {

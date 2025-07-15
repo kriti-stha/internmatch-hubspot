@@ -107,6 +107,10 @@ exports.main = async (context) => {
           }
         )
         tickets = batchRes.data.results
+        // Filter tickets to only those in pipeline 735611506
+        tickets = tickets.filter(
+          (ticket) => ticket.properties && ticket.properties.hs_pipeline === "735611506"
+        )
       } catch (batchError) {
         return {
           statusCode: batchError.response?.status || 500,
