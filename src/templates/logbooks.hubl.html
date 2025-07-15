@@ -17,20 +17,7 @@
   {% if request_contact.is_logged_in %}
     {% set membership_contact = request_contact.identifier %}
     Welcome back, {{ membership_contact }}
-    <p>1</p>
-    {% module "Logbook" 
-    path="@Logbooks-InternMatch/src/components/modules/Logbook",
-    membership_contact=membership_contact
-  %}
-  <p>2</p>
-  {% module "Logbook" 
-    path="./components/modules/Logbook",
-    membership_contact=membership_contact
-  %}<p>3</p>
-  {% module "Logbook" 
-    path="src/components/modules/Logbook",
-    membership_contact=membership_contact
-  %}<p>4</p>
+
   {% module "Logbook" 
     path="../components/modules/Logbook",
     membership_contact=membership_contact

@@ -8,12 +8,13 @@ import { createTableColumns } from "../../utils/tableColumns.js"
 import DataTable from "./DataTable.jsx"
 import { logInfo } from "@hubspot/cms-components"
 
-const Logbooks = ({ membership_contact }) => {
+const Logbooks = ({ props, membership_contact }) => {
   const { logbookData, pipelineStages, loading, error } = useLogbookData()
   const [selectedTicket, setSelectedTicket] = useState(null)
   const [hoveredRow, setHoveredRow] = useState(null)
   const [isClient, setIsClient] = useState(false)
 
+  console.log("INFO==>", { props, membership_contact })
   useEffect(() => {
     setIsClient(true)
   }, [])
@@ -61,7 +62,7 @@ const Logbooks = ({ membership_contact }) => {
       />
     )
   }
-  logInfo({ tickets, membership_contact })
+  // logInfo({ tickets, membership_contact })
   return (
     <div style={styles.container}>
       <h2 style={styles.title}>View all logbooks</h2>
