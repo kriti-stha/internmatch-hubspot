@@ -16,7 +16,7 @@
 
   {% if request_contact.is_logged_in %}
     {% set membership_contact = request_contact.identifier %}
-    Welcome back, {{ membership_contact }}
+    <p>Welcome back--> {{ membership_contact }}</p>
 
   {% module "Logbook" 
     path="../components/modules/Logbook",
