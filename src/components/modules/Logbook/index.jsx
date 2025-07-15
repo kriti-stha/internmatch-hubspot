@@ -24,6 +24,7 @@ export function Component(props) {
         fieldValues={fieldValues}
         membership_contact={membership_contact}
         hublParameters={hublParameters}
+        props={props}
       />
     </div>
   )
