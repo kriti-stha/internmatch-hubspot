@@ -14,7 +14,7 @@ const Logbooks = ({ fieldValues, membership_contact }) => {
   const [hoveredRow, setHoveredRow] = useState(null)
   const [isClient, setIsClient] = useState(false)
 
-  console.log("INFO==>", { props, membership_contact })
+  console.log("INFO==>", { fieldValues, membership_contact })
 
   useEffect(() => {
     setIsClient(true)
