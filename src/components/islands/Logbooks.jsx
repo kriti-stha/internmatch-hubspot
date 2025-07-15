@@ -66,11 +66,7 @@ const Logbooks = ({ fieldValues, membership_contact }) => {
   return (
     <div style={styles.container}>
       <h2 style={styles.title}>View all logbooks</h2>
-      {membership_contact && (
-        <p style={{ textAlign: "center", marginBottom: "20px", color: "#666" }}>
-          Welcome back, {membership_contact}
-        </p>
-      )}
+
       {isClient && tickets.length > 0 && (
         <div style={styles.buttonContainer}>
           <div></div> {/* Empty div for spacing */}

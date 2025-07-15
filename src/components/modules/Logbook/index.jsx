@@ -23,6 +23,7 @@ export function Component(props) {
         module={Logbooks}
         fieldValues={fieldValues}
         membership_contact={membership_contact}
+        hublParameters={hublParameters}
       />
     </div>
   )
