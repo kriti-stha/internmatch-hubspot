@@ -1,5 +1,5 @@
 {
-  "name": "Logbook Serverless functions",
+  "name": "Logbook Private App",
   "description": "Serverless Functions for Logbook in Hubspot",
   "scopes": [
     "crm.objects.contacts.read",
