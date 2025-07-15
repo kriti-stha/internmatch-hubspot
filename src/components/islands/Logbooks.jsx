@@ -9,20 +9,22 @@ import DataTable from "./DataTable.jsx"
 import { logInfo } from "@hubspot/cms-components"
 
 const Logbooks = ({ fieldValues, hublParameters }) => {
-  const { logbookData, pipelineStages, loading, error } = useLogbookData(contactEmail)
   const [selectedTicket, setSelectedTicket] = useState(null)
   const [hoveredRow, setHoveredRow] = useState(null)
   const [isClient, setIsClient] = useState(false)
-  const [contactEmail, setContactEmail] = useState(contact?.identifier || "")
 
   const [contact, setContact] = useState(null)
+  const [contactEmail, setContactEmail] = useState("")
 
   useEffect(() => {
     if (window.req_contact && window.req_contact.contact) {
       setContact(window?.req_contact?.contact || {})
-      setContactEmail()
+      setContactEmail(window?.req_contact?.contact?.identifier)
     }
   }, [])
+
+  const { logbookData, pipelineStages, loading, error } =
+    useLogbookData(contactEmail)
 
   console.log("INFO==>", {
     fieldValues,
