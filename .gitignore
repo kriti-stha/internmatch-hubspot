@@ -1,0 +1,49 @@
+# Dependencies
+node_modules/
+/.pnp
+.pnp.js
+package-lock.json
+src/package-lock.json
+
+# Testing
+/coverage
+
+.vscode/
+
+# Production
+/build
+/dist
+
+# Misc
+.DS_Store
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Config files
+config.js
+config.json
+config.yml
+config.yaml
+*.config.js
+*.config.json
+*.config.yml
+*.config.yaml
+
+# Cache
+.cache/
+.npm/
+.eslintcache 
