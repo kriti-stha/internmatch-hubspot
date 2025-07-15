@@ -14,14 +14,14 @@ export const fields = (
 )
 
 export function Component(props) {
-  const { membership_contact, contact_data, email } = props || {}
+  const { hublParameters, fieldValues } = props || {}
+  const membership_contact = hublParameters?.membership_contact || ""
 
   return (
     <div>
-      <p>Welcome back: {membership_contact || "team!"}</p>
       <Island
         module={Logbooks}
-        props={props}
+        fieldValues={fieldValues}
         membership_contact={membership_contact}
       />
     </div>

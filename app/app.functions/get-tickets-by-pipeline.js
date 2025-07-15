@@ -1,105 +1,84 @@
 const axios = require("axios")
 
-exports.main = async (context) => {
-  const { email } = context.params
+exports.main = async () => {
+  const token = process.env.HUBSPOT_SERVERLESS_FUNCTION_TOKEN
+  const pipelineId = "735611506"
 
-  if (!email) {
-    return {
-      statusCode: 400,
-      body: { message: "Missing email in query params" },
-    }
-  }
+  // Function to fetch all tickets in the pipeline, handling pagination
+  async function fetchAllTicketsInPipeline(pipelineId) {
+    let allTickets = []
+    let after = null
+    let hasMore = true
 
-  const HUBSPOT_API_KEY = process.env.HUBSPOT_API_KEY // Use your private app token
-
-  try {
-    // Step 1: Find contact by email
-    const contactSearchRes = await axios.post(
-      "https://api.hubapi.com/crm/v3/objects/contacts/search",
-      {
-        filterGroups: [
+    while (hasMore) {
+      try {
+        const response = await axios.post(
+          "https://api.hubapi.com/crm/v3/objects/tickets/search",
           {
-            filters: [
+            filterGroups: [
               {
-                propertyName: "email",
-                operator: "EQ",
-                value: email,
+                filters: [
+                  {
+                    propertyName: "hs_pipeline",
+                    operator: "EQ",
+                    value: pipelineId,
+                  },
+                ],
               },
             ],
+            properties: [
+              "subject", //name of person who submitted logbook
+              "content", // what did you do today?
+              "date_of_activity", //logbook date
+              "ticket_notes", //what did you learn today?
+              "hs_pipeline_stage", //id of what stage the logbook is in.
+              "hs_pipeline", //logbooks pipeline id
+              "source_type", //how was the ticket created? Form usually.
+              "hubspot_owner_id", //who currently owns the ticket
+              "hs_created_by_user_id", //who created it
+              "hs_ticket_contact", //contact ID associated with the ticket
+            ],
+            limit: 100,
+            after: after,
           },
-        ],
-        properties: ["email"],
-        limit: 1,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${HUBSPOT_API_KEY}`,
-          "Content-Type": "application/json",
-        },
-      }
-    )
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+            },
+          }
+        )
 
-    const contact = contactSearchRes.data.results?.[0]
-    if (!contact) {
-      return {
-        statusCode: 404,
-        body: { message: "Contact not found" },
+        allTickets = [...allTickets, ...response.data.results]
+        after = response.data.paging?.next?.after || null
+        hasMore = !!after
+      } catch (error) {
+        console.error("Error fetching tickets:", error)
+        throw error
       }
     }
 
-    const contactId = contact.id
+    return allTickets
+  }
 
-    // Step 2: Get associated tickets
-    const associatedTicketsRes = await axios.get(
-      `https://api.hubapi.com/crm/v4/objects/contacts/${contactId}/associations/tickets`,
-      {
-        headers: {
-          Authorization: `Bearer ${HUBSPOT_API_KEY}`,
-        },
-        params: {
-          limit: 100,
-        },
-      }
-    )
-
-    const ticketIds =
-      associatedTicketsRes.data.results?.map((r) => r.toObjectId) || []
-
-    if (ticketIds.length === 0) {
-      return {
-        statusCode: 200,
-        body: [],
-      }
-    }
-
-    // Step 3: Batch read tickets and filter by pipeline
-    const ticketsBatch = await axios.post(
-      "https://api.hubapi.com/crm/v3/objects/tickets/batch/read",
-      {
-        properties: ["subject", "hs_pipeline", "hs_pipeline_stage", "content"],
-        inputs: ticketIds.map((id) => ({ id })),
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${HUBSPOT_API_KEY}`,
-          "Content-Type": "application/json",
-        },
-      }
-    )
-
-    const filtered = ticketsBatch.data.results.filter(
-      (ticket) => ticket.properties.hs_pipeline === "735611506"
-    )
+  try {
+    const tickets = await fetchAllTicketsInPipeline(pipelineId)
 
     return {
       statusCode: 200,
-      body: filtered,
+      body: {
+        results: tickets,
+        count: tickets.length,
+      },
+      headers: { "Content-Type": "application/json" },
     }
   } catch (error) {
-    console.error("Error:", error.response?.data || error.message)
+    console.error("Fetch error:", error)
+
     return {
       statusCode: 500,
-      body: { error: error.response?.data || error.message },
+      body: { error: error.message },
+      headers: { "Content-Type": "application/json" },
     }
   }
 }
