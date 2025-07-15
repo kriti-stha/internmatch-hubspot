@@ -19,19 +19,20 @@ const Logbooks = ({
   const [hoveredRow, setHoveredRow] = useState(null)
   const [isClient, setIsClient] = useState(false)
 
-  const [contact, setContact] = useState(null);
+  const [contact, setContact] = useState(null)
 
   useEffect(() => {
     if (window.req_contact && window.req_contact.contact) {
-      setContact(window.req_contact.contact);
+      setContact(window.req_contact.contact)
     }
-  }, []);
+  }, [])
 
   console.log("INFO==>", {
     fieldValues,
     membership_contact,
     hublParameters,
     props,
+    contact,
   })
 
   useEffect(() => {
