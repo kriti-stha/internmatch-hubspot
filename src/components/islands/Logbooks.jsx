@@ -23,14 +23,13 @@ const Logbooks = ({ fieldValues, hublParameters }) => {
     }
   }, [])
 
-  const { logbookData, pipelineStages, loading, error } =
+  const { logbookData, pipelineStages, loading, error, logbookTicketsByEmail } =
     useLogbookData(contactEmail)
 
   console.log("INFO==>", {
     fieldValues,
     hublParameters,
-    contact,
-    contactEmail,
+    logbookTicketsByEmail,
   })
 
   useEffect(() => {

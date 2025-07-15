@@ -31,7 +31,9 @@ export const useLogbookData = (contactEmail) => {
     }
     setLoading(true)
     try {
-      const response = await fetch(`/hs/serverless/get-ticket-by-email?email=${encodeURIComponent(contactEmail)}`)
+      const response = await fetch(
+        `/hs/serverless/get-ticket-by-email?email=${contactEmail}`
+      )
       const responseData = await response.json()
       setLogbookTicketsByEmail(responseData?.tickets || [])
       setError(null)
