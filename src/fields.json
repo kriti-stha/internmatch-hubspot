@@ -7,5 +7,14 @@
       "color": "#FF7A59",
       "opacity": 100
     }
+  },
+  {
+    "type": "Color",
+    "name": "primary_color",
+    "label": "Brand Color",
+    "default": {
+      "color": "#FF7A59",
+      "opacity": 100
+    }
   }
 ]
