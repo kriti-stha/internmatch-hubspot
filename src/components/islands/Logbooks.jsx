@@ -6,7 +6,6 @@ import { generateAllLogbooksPdf } from "../../utils/pdfGenerator.js"
 import { useLogbookData } from "../../hooks/useLogbookData.js"
 import { createTableColumns } from "../../utils/tableColumns.js"
 import DataTable from "./DataTable.jsx"
-import { logInfo } from "@hubspot/cms-components"
 
 const Logbooks = ({ fieldValues, hublParameters }) => {
   const [selectedTicket, setSelectedTicket] = useState(null)
@@ -30,13 +29,15 @@ const Logbooks = ({ fieldValues, hublParameters }) => {
     fieldValues,
     hublParameters,
     logbookTicketsByEmail,
+    logbookData,
+    logbookTicketsByEmail,
   })
 
   useEffect(() => {
     setIsClient(true)
   }, [])
 
-  const tickets = logbookData?.results || []
+  const tickets = logbookTicketsByEmail?.results || logbookTicketsByEmail || []
 
   const handleTicketClick = (ticket) => {
     setSelectedTicket(ticket)
@@ -85,7 +86,7 @@ const Logbooks = ({ fieldValues, hublParameters }) => {
 
       {isClient && tickets.length > 0 && (
         <div style={styles.buttonContainer}>
-          <div></div> {/* Empty div for spacing */}
+          <div></div>
           <button onClick={handleDownloadAllPdf} style={styles.downloadButton}>
             Download All Logbooks as PDF
           </button>
