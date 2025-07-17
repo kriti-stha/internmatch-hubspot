@@ -202,7 +202,12 @@ const Logbooks = ({ fieldValues, hublParameters, signInLink = "#" }) => {
           boxShadow: '0 1px 8px rgba(60,72,88,0.10)'
         }}>
           The page you are trying to view is only available to registered users, please sign in first{' '}
-          <a href={signInLink} style={{ color: '#ff6f2c', textDecoration: 'underline', fontWeight: 600 }}>here</a>.
+          <a
+            href={typeof signInLink === "string" ? signInLink : signInLink?.href || "#"}
+            style={{ color: '#ff6f2c', textDecoration: 'underline', fontWeight: 600 }}
+          >
+            here
+          </a>.
         </div>
       </div>
     )
