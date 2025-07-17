@@ -7,20 +7,18 @@ import { useLogbookData } from "../../hooks/useLogbookData.js"
 import { createTableColumns } from "../../utils/tableColumns.js"
 import DataTable from "./DataTable.jsx"
 import { Button } from "../ui/button.tsx"
-import styles from '../../styles/component.module.css';
+import styles from "../../styles/component.module.css"
 
 const Logbooks = ({ fieldValues, hublParameters }) => {
   const [selectedTicket, setSelectedTicket] = useState(null)
   const [hoveredRow, setHoveredRow] = useState(null)
   const [isClient, setIsClient] = useState(false)
 
-  const [contact, setContact] = useState(null)
   const [contactEmail, setContactEmail] = useState("")
 
   useEffect(() => {
-    if (window.req_contact && window.req_contact.contact) {
-      setContact(window?.req_contact?.contact || {})
-      setContactEmail(window?.req_contact?.contact?.identifier)
+    if (window.req_contact ) {
+      setContactEmail(window?.req_contact?.contact?.identifier || window?.req_contact?.contact.membership_contact|| window.)
     }
   }, [])
 
@@ -39,92 +37,92 @@ const Logbooks = ({ fieldValues, hublParameters }) => {
     setIsClient(true)
   }, [])
 
-  const mockData = [
-    {
-      id: "26592312607",
-      properties: {
-        content:
-          "Working woth two project,develop a design and simulation for this company",
-        createdate: "2025-07-16T12:14:31.039Z",
-        date_of_activity: "2025-07-16",
-        hs_created_by_user_id: null,
-        hs_lastmodifieddate: "2025-07-17T01:01:46.528Z",
-        hs_object_id: "26592312607",
-        hs_pipeline: "735611506",
-        hs_pipeline_stage: "1071384092",
-        hubspot_owner_id: "104345995",
-        source_type: "FORM",
-        subject: "Test",
-        ticket_notes: "How to work with matlab Software",
-      },
-      createdAt: "2025-07-16T12:14:31.039Z",
-      updatedAt: "2025-07-17T01:01:46.528Z",
-      archived: false,
-    },
-    {
-      id: "26525981044",
-      properties: {
-        content: "Greetings with everyone",
-        createdate: "2025-07-14T13:17:58.797Z",
-        date_of_activity: "2025-07-14",
-        hs_created_by_user_id: null,
-        hs_lastmodifieddate: "2025-07-16T05:17:58.254Z",
-        hs_object_id: "26525981044",
-        hs_pipeline: "735611506",
-        hs_pipeline_stage: "1071384092",
-        hubspot_owner_id: "104345995",
-        source_type: "FORM",
-        subject: "Test",
-        ticket_notes: "How to manage weekly meeting ,they give me project",
-      },
-      createdAt: "2025-07-14T13:17:58.797Z",
-      updatedAt: "2025-07-16T05:17:58.254Z",
-      archived: false,
-    },
-    {
-      id: "26562232673",
-      properties: {
-        content: "Working with my project",
-        createdate: "2025-07-15T08:42:20.309Z",
-        date_of_activity: "2025-07-15",
-        hs_created_by_user_id: null,
-        hs_lastmodifieddate: "2025-07-17T00:42:19.551Z",
-        hs_object_id: "26562232673",
-        hs_pipeline: "735611506",
-        hs_pipeline_stage: "1071384092",
-        hubspot_owner_id: "104345995",
-        source_type: "FORM",
-        subject: "Test",
-        ticket_notes: "how to use Second Solar panel",
-      },
-      createdAt: "2025-07-15T08:42:20.309Z",
-      updatedAt: "2025-07-17T00:42:19.551Z",
-      archived: false,
-    },
-    {
-      id: "26524153997",
-      properties: {
-        content:
-          "Greetings with every staff,joined weekly meeting,they gave me two projects",
-        createdate: "2025-07-14T13:16:28.877Z",
-        date_of_activity: "2025-07-14",
-        hs_created_by_user_id: null,
-        hs_lastmodifieddate: "2025-07-16T05:16:28.155Z",
-        hs_object_id: "26524153997",
-        hs_pipeline: "735611506",
-        hs_pipeline_stage: "1071384092",
-        hubspot_owner_id: "104345995",
-        source_type: "FORM",
-        subject: "test",
-        ticket_notes: "How to manage weekly meeting with staff",
-      },
-      createdAt: "2025-07-14T13:16:28.877Z",
-      updatedAt: "2025-07-16T05:16:28.155Z",
-      archived: false,
-    },
-  ]
+  // const mockData = [
+  //   {
+  //     id: "26592312607",
+  //     properties: {
+  //       content:
+  //         "Working woth two project,develop a design and simulation for this company",
+  //       createdate: "2025-07-16T12:14:31.039Z",
+  //       date_of_activity: "2025-07-16",
+  //       hs_created_by_user_id: null,
+  //       hs_lastmodifieddate: "2025-07-17T01:01:46.528Z",
+  //       hs_object_id: "26592312607",
+  //       hs_pipeline: "735611506",
+  //       hs_pipeline_stage: "1071384092",
+  //       hubspot_owner_id: "104345995",
+  //       source_type: "FORM",
+  //       subject: "Test",
+  //       ticket_notes: "How to work with matlab Software",
+  //     },
+  //     createdAt: "2025-07-16T12:14:31.039Z",
+  //     updatedAt: "2025-07-17T01:01:46.528Z",
+  //     archived: false,
+  //   },
+  //   {
+  //     id: "26525981044",
+  //     properties: {
+  //       content: "Greetings with everyone",
+  //       createdate: "2025-07-14T13:17:58.797Z",
+  //       date_of_activity: "2025-07-14",
+  //       hs_created_by_user_id: null,
+  //       hs_lastmodifieddate: "2025-07-16T05:17:58.254Z",
+  //       hs_object_id: "26525981044",
+  //       hs_pipeline: "735611506",
+  //       hs_pipeline_stage: "1071384092",
+  //       hubspot_owner_id: "104345995",
+  //       source_type: "FORM",
+  //       subject: "Test",
+  //       ticket_notes: "How to manage weekly meeting ,they give me project",
+  //     },
+  //     createdAt: "2025-07-14T13:17:58.797Z",
+  //     updatedAt: "2025-07-16T05:17:58.254Z",
+  //     archived: false,
+  //   },
+  //   {
+  //     id: "26562232673",
+  //     properties: {
+  //       content: "Working with my project",
+  //       createdate: "2025-07-15T08:42:20.309Z",
+  //       date_of_activity: "2025-07-15",
+  //       hs_created_by_user_id: null,
+  //       hs_lastmodifieddate: "2025-07-17T00:42:19.551Z",
+  //       hs_object_id: "26562232673",
+  //       hs_pipeline: "735611506",
+  //       hs_pipeline_stage: "1071384092",
+  //       hubspot_owner_id: "104345995",
+  //       source_type: "FORM",
+  //       subject: "Test",
+  //       ticket_notes: "how to use Second Solar panel",
+  //     },
+  //     createdAt: "2025-07-15T08:42:20.309Z",
+  //     updatedAt: "2025-07-17T00:42:19.551Z",
+  //     archived: false,
+  //   },
+  //   {
+  //     id: "26524153997",
+  //     properties: {
+  //       content:
+  //         "Greetings with every staff,joined weekly meeting,they gave me two projects",
+  //       createdate: "2025-07-14T13:16:28.877Z",
+  //       date_of_activity: "2025-07-14",
+  //       hs_created_by_user_id: null,
+  //       hs_lastmodifieddate: "2025-07-16T05:16:28.155Z",
+  //       hs_object_id: "26524153997",
+  //       hs_pipeline: "735611506",
+  //       hs_pipeline_stage: "1071384092",
+  //       hubspot_owner_id: "104345995",
+  //       source_type: "FORM",
+  //       subject: "test",
+  //       ticket_notes: "How to manage weekly meeting with staff",
+  //     },
+  //     createdAt: "2025-07-14T13:16:28.877Z",
+  //     updatedAt: "2025-07-16T05:16:28.155Z",
+  //     archived: false,
+  //   },
+  // ]
 
-  // Determine tickets: use API data if available, otherwise use mockData
+ 
   let tickets = []
   if (
     logbookTicketsByEmail &&
@@ -132,13 +130,8 @@ const Logbooks = ({ fieldValues, hublParameters }) => {
     logbookTicketsByEmail.results.length > 0
   ) {
     tickets = logbookTicketsByEmail.results
-  } else if (
-    Array.isArray(logbookTicketsByEmail) &&
-    logbookTicketsByEmail.length > 0
-  ) {
-    tickets = logbookTicketsByEmail
   } else {
-    tickets = mockData
+    tickets = logbookTicketsByEmail
   }
 
   const handleTicketClick = (ticket) => {
@@ -170,18 +163,19 @@ const Logbooks = ({ fieldValues, hublParameters }) => {
   const stageIdToLabel = pipelineStages && convertStageIdToLabel(pipelineStages)
   const columns = createTableColumns(stageIdToLabel)
 
-  if (loading) return (
-    <div style={logbookStyles.loading}>
-      <div style={logbookStyles.spinner} />
-      Loading...
-      <style>{`
+  if (loading)
+    return (
+      <div style={logbookStyles.loading}>
+        <div style={logbookStyles.spinner} />
+        Loading...
+        <style>{`
         @keyframes spin {
           0% { transform: rotate(0deg); }
           100% { transform: rotate(360deg); }
         }
       `}</style>
-    </div>
-  )
+      </div>
+    )
   if (error) return <div style={logbookStyles.error}>Error: {error}</div>
 
   if (selectedTicket) {
@@ -200,7 +194,11 @@ const Logbooks = ({ fieldValues, hublParameters }) => {
       {isClient && tickets.length > 0 && (
         <div style={logbookStyles.buttonContainer}>
           <div></div>
-          <Button onClick={handleDownloadAllPdf} variant="default" className={styles.orangeButton}>
+          <Button
+            onClick={handleDownloadAllPdf}
+            variant="default"
+            className={styles.orangeButton}
+          >
             Download All Logbooks as PDF
           </Button>
         </div>

@@ -9,13 +9,12 @@ export const meta = {
 
 export const fields = (
   <ModuleFields>
-    <TextField name="email" label="email" default="test@logbooks.com" />
+    <TextField name="email" label="email" default="email" />
   </ModuleFields>
 )
 
 export function Component(props) {
   const { hublParameters, fieldValues } = props || {}
-  const membership_contact = hublParameters?.membership_contact || ""
 
   console.log("props==>", props)
 
@@ -24,7 +23,6 @@ export function Component(props) {
       <Island
         module={Logbooks}
         fieldValues={fieldValues}
-        membership_contact={membership_contact}
         hublParameters={hublParameters}
         props={props}
       />
