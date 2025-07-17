@@ -8,7 +8,6 @@ import { createTableColumns } from "../../utils/tableColumns.js"
 import DataTable from "./DataTable.jsx"
 import { Button } from "../ui/button.tsx"
 import styles from "../../styles/component.module.css"
-import Footer from '../partials/Footer.jsx';
 
 const Logbooks = ({ fieldValues, hublParameters, signInLink = "#" }) => {
   const [selectedTicket, setSelectedTicket] = useState(null)
@@ -245,7 +244,6 @@ const Logbooks = ({ fieldValues, hublParameters, signInLink = "#" }) => {
           }
         />
       </div>
-      <Footer />
     </>
   )
 }
