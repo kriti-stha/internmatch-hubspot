@@ -4,12 +4,10 @@
   label: logbooks-view
 -->
 
-
 {% extends "./layouts/base.hubl.html" %}
 
 {% block body %}
 
-  {% if request_contact.is_logged_in %}
     {% set membership_contact = request_contact.identifier %}
       {% dnd_area "dnd_area_logged_in_top", class="main" %}
         {% dnd_section %}
@@ -18,9 +16,7 @@
       {% end_dnd_area %}
 
     <p>Welcome back--> {{ membership_contact }}</p>
-
-
-  {% module "Logbook", 
+    {% module "Logbook", 
     path="../components/modules/Logbook",
   %}
    
@@ -30,24 +26,6 @@
     {% end_dnd_section %}
   {% end_dnd_area %}
 
-  {% else %}
-    {% dnd_area "dnd_area_logged_out_top", class="main" %}
-      {% dnd_section %}
-  
-      {% end_dnd_section %}
-    {% end_dnd_area %}
-      <section class="section-wrapper section-wrapper--large">
-      <p>The page you are trying to view is only available to registered users, please sign in first.</p>
-    
-      
-      {% dnd_area "dnd_area_logged_out_bottom", class="main" %}
-        {% dnd_section %}
-    
-        {% end_dnd_section %}
-      {% end_dnd_area %}
-
-    </section>
-  {% endif %}
     
   <script>
     window.req_contact = {
@@ -56,8 +34,5 @@
     
     console.log("contact Data:", window.req_contact.contact);
   </script>
-    
-  
-  
     
 {% endblock body %}
