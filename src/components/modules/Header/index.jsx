@@ -1,0 +1,22 @@
+import { Island, ModuleFields, ImageField } from "@hubspot/cms-components"
+import Header from "../../islands/Header.jsx?island"
+
+export const meta = {
+  label: "Header",
+  icon: "header",
+}
+
+export const fields = (
+  <ModuleFields>
+    <ImageField
+      name="headerImage"
+      label="Header Image"
+      default="@project/src/assets/internmatch-header.png"
+    />
+  </ModuleFields>
+)
+
+export function Component(props) {
+  const { fieldValues } = props || {}
+  return <Island module={Header} headerImage={fieldValues?.headerImage} />
+}

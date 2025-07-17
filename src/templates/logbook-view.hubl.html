@@ -7,17 +7,16 @@
 {% extends "./layouts/base.hubl.html" %}
 
 {% block body %}
+  {% module "Header", path="../components/modules/Header" %}
   <div style="max-width: 1200px; margin: 0 auto; padding: 32px 0 0 0;">
     <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-      <img src="{{ get_asset_url('@project/src/assets/internmatch-header.png') }}" alt="InternMatch Logbooks header" style="max-width: 500px; width: 100%; height: auto; margin-bottom: 0; display: block;" />
-      <button style="background: #EA5024; color: #fff; border: none; border-radius: 8px; padding: 12px 28px; font-size: 1.1rem; font-weight: 600; margin-left: 32px; cursor: pointer; margin-top: 16px; transition: background 0.2s;" onmouseover="this.style.background='#c9451d'" onmouseout="this.style.background='#EA5024'" onclick="console.log('Contact us clicked')">Contact us</button>
+      <!-- Contact us button removed -->
     </div>
     
     <div style="max-width: 900px; margin: 0 auto; margin-top: 24px; background: #0d3535; border-radius: 8px; padding: 36px 32px 32px 32px; box-shadow: 0 4px 24px rgba(60,72,88,0.10);">
       {% module "Logbook", path="../components/modules/Logbook" %}
     </div>
-    <div id="footer-root"></div>
-    <script src="/_hcms/resource/footer-client.js" defer></script>
+    {% module "Footer", path="../components/modules/Footer" %}
     <script>
       window.req_contact = {
         contact: {{ membership_contact|tojson }},
