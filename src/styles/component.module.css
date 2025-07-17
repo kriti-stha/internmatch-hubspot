@@ -8,3 +8,17 @@
   border: 1px solid #ccc;
   border-radius: 4px;
 }
+
+.orangeButton {
+  background: #ff6f2c;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 15px;
+  font-weight: 600;
+  transition: background 0.2s;
+  cursor: pointer;
+}
+.orangeButton:hover {
+  background: #ffb380;
+}
