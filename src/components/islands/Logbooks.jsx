@@ -9,7 +9,7 @@ import DataTable from "./DataTable.jsx"
 import { Button } from "../ui/button.tsx"
 import styles from "../../styles/component.module.css"
 
-const Logbooks = ({ fieldValues, hublParameters }) => {
+const Logbooks = ({ fieldValues, hublParameters, signInLink = "#" }) => {
   const [selectedTicket, setSelectedTicket] = useState(null)
   const [hoveredRow, setHoveredRow] = useState(null)
   const [isClient, setIsClient] = useState(false)
@@ -176,7 +176,6 @@ const Logbooks = ({ fieldValues, hublParameters }) => {
       `}</style>
       </div>
     )
-  // Do not return early on error; show error in table below
 
   if (selectedTicket) {
     return (
@@ -187,6 +186,28 @@ const Logbooks = ({ fieldValues, hublParameters }) => {
       />
     )
   }
+
+  if (!contactEmail) {
+    return (
+      <div style={logbookStyles.container}>
+        <h2 style={logbookStyles.title}>View all logbooks</h2>
+        <div style={{
+          background: '#fff',
+          borderRadius: '16px',
+          padding: '32px',
+          marginTop: '32px',
+          textAlign: 'center',
+          fontSize: '1.15rem',
+          color: '#1a2233',
+          boxShadow: '0 1px 8px rgba(60,72,88,0.10)'
+        }}>
+          The page you are trying to view is only available to registered users, please sign in first{' '}
+          <a href={signInLink} style={{ color: '#ff6f2c', textDecoration: 'underline', fontWeight: 600 }}>here</a>.
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div style={logbookStyles.container}>
       <h2 style={logbookStyles.title}>View all logbooks</h2>
