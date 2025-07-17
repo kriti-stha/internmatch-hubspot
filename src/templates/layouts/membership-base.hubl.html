@@ -12,7 +12,7 @@
       {% if brand_settings.primaryFavicon.src %}
         <link rel="shortcut icon" href="{{ brand_settings.primaryFavicon.src }}">
       {% endif %}
-      <link rel="stylesheet" href="{{ get_asset_url('src/styles/membership.css') }}">
+      <link rel="stylesheet" href="{{ get_asset_url('@project/src/styles/membership.css') }}">
       <meta name="description" content="{{ content.meta_description }}">
       
       {{ standard_header_includes }}
