@@ -1,9 +1,5 @@
-import {
-  ModuleFields,
-  TextField,
-  UrlField,
-} from "@hubspot/cms-components/fields"
-import { Island, logInfo } from "@hubspot/cms-components"
+import { ModuleFields, TextField, UrlField } from "@hubspot/cms-components/fields"
+import { Island } from "@hubspot/cms-components"
 import Logbooks from "../../islands/Logbooks.jsx?island"
 
 export const meta = {
@@ -24,8 +20,6 @@ export const fields = (
 
 export function Component(props) {
   const { hublParameters, fieldValues } = props || {}
-
-  console.log("props==>", props)
 
   return (
     <div>
