@@ -9,7 +9,7 @@ export const styles = {
   },
   title: {
     marginBottom: "28px",
-    color: "#fff", // white text
+    color: "#fff", 
     fontSize: "2rem",
     fontWeight: 700,
     letterSpacing: "0.5px",
@@ -19,30 +19,26 @@ export const styles = {
     width: "100%",
     borderCollapse: "separate",
     borderSpacing: 0,
-    background: "#fff", // white table background
-    borderRadius: "8px", // slight border radius for inner table
+    background: "#fff", 
+    borderRadius: "8px", 
     overflow: "hidden",
     boxShadow: "0 1px 4px rgba(60,72,88,0.06)",
   },
   tableHeader: {
-    background: "#ff6f2c", // orange background for column headers
+    background: "#EA5024", 
   },
   tableHeaderCell: {
     padding: "16px 18px",
-    color: "#fff", // white text for header
+    color: "#fff", 
     fontWeight: 600,
     fontSize: "1.05rem",
     textAlign: "left",
   },
   tableRow: (index) => ({
-    background: index % 2 === 0 ? "#e6f4f4" : "#fff", // subtle teal/white stripes
+    background: index % 2 === 0 ? "#e6f4f4" : "#fff", 
     transition: "all 0.2s ease",
     cursor: "pointer",
-    // ":hover": {
-    //   borderLeft: "4px solid #ff6f2c", // orange accent
-    //   transform: "translateX(2px)",
-    //   boxShadow: "0 2px 8px rgba(74, 144, 226, 0.10)",
-    // },
+    
   }),
   tableCell: {
     padding: "14px 18px",
@@ -63,7 +59,7 @@ export const styles = {
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    color: "#ff6f2c", // orange
+    color: "#EA5024", // orange
     fontSize: "1.2rem",
     padding: "32px",
     minHeight: "120px",
@@ -72,7 +68,7 @@ export const styles = {
     width: "36px",
     height: "36px",
     border: "4px solid #fff",
-    borderTop: "4px solid #ff6f2c",
+    borderTop: "4px solid #EA5024",
     borderRadius: "50%",
     animation: "spin 1s linear infinite",
     marginBottom: "16px",
@@ -88,7 +84,7 @@ export const styles = {
     marginTop: "18px",
   },
   backButton: {
-    background: "#ff6f2c", // orange background
+    background: "#EA5024", // orange background
     border: "none",
     padding: "10px 15px",
     borderRadius: "8px",
@@ -103,7 +99,7 @@ export const styles = {
     },
   },
   downloadButton: {
-    background: "#ff6f2c", // orange background
+    background: "#EA5024", // orange background
     border: "none",
     padding: "10px 15px",
     borderRadius: "8px",

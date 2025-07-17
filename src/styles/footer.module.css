@@ -1,5 +1,74 @@
 .footer {
-  text-align: center;
-  font-weight: bold;
-  font-size: 2em;
+  border-top: 1px solid #222;
+  padding: 32px 0 24px 0;
+  background: #fff;
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  color: #ea5024;
+  font-size: 2.5rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  font-family: "Montserrat", "Arial Black", Arial, sans-serif;
+}
+
+.logoImg {
+  height: 130px;
+  width: auto;
+  display: block;
+}
+
+.right {
+  display: flex;
+  gap: 24px;
+}
+
+.iconCircle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: transparent;
+  transition: box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(60, 72, 88, 0.08);
+  text-decoration: none;
+}
+
+.iconCircle:hover {
+  box-shadow: 0 4px 16px rgba(60, 72, 88, 0.16);
+}
+
+@media (max-width: 600px) {
+  .container {
+    flex-direction: column;
+    gap: 16px;
+    padding: 0 8px;
+  }
+  .logo {
+    font-size: 1.5rem;
+  }
+  .right {
+    gap: 12px;
+  }
+  .iconCircle {
+    width: 36px;
+    height: 36px;
+  }
 }

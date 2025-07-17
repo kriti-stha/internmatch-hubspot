@@ -8,6 +8,7 @@ import { createTableColumns } from "../../utils/tableColumns.js"
 import DataTable from "./DataTable.jsx"
 import { Button } from "../ui/button.tsx"
 import styles from "../../styles/component.module.css"
+import Footer from '../partials/Footer.jsx';
 
 const Logbooks = ({ fieldValues, hublParameters, signInLink = "#" }) => {
   const [selectedTicket, setSelectedTicket] = useState(null)
@@ -214,35 +215,38 @@ const Logbooks = ({ fieldValues, hublParameters, signInLink = "#" }) => {
   }
 
   return (
-    <div style={logbookStyles.container}>
-      <h2 style={logbookStyles.title}>View all logbooks</h2>
+    <>
+      <div style={logbookStyles.container}>
+        <h2 style={logbookStyles.title}>View all logbooks</h2>
 
-      {isClient && tickets.length > 0 && (
-        <div style={logbookStyles.buttonContainer}>
-          <div></div>
-          <Button
-            onClick={handleDownloadAllPdf}
-            variant="default"
-            className={styles.orangeButton}
-          >
-            Download All Logbooks as PDF
-          </Button>
-        </div>
-      )}
-      <DataTable
-        data={tickets}
-        columns={columns}
-        onRowClick={handleTicketClick}
-        hoveredRow={hoveredRow}
-        onRowMouseEnter={handleRowMouseEnter}
-        onRowMouseLeave={handleRowMouseLeave}
-        emptyStateMessage={
-          error
-            ? `An error occured! Please try again later.`
-            : "No logbooks found for this user."
-        }
-      />
-    </div>
+        {isClient && tickets.length > 0 && (
+          <div style={logbookStyles.buttonContainer}>
+            <div></div>
+            <Button
+              onClick={handleDownloadAllPdf}
+              variant="default"
+              className={styles.orangeButton}
+            >
+              Download All Logbooks as PDF
+            </Button>
+          </div>
+        )}
+        <DataTable
+          data={tickets}
+          columns={columns}
+          onRowClick={handleTicketClick}
+          hoveredRow={hoveredRow}
+          onRowMouseEnter={handleRowMouseEnter}
+          onRowMouseLeave={handleRowMouseLeave}
+          emptyStateMessage={
+            error
+              ? `An error occured! Please try again later.`
+              : "No logbooks found for this user."
+          }
+        />
+      </div>
+      <Footer />
+    </>
   )
 }
 
