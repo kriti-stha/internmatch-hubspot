@@ -51,7 +51,7 @@
     
   <script>
     window.req_contact = {
-      contact: { membership_contact|tojson  },
+      contact: {{ membership_contact|tojson }},
     };
     
     console.log("contact Data:", window.req_contact.contact);
