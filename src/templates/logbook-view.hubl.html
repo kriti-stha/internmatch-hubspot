@@ -1,0 +1,50 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  label: logbooks-view
+-->
+
+{% block body %}
+
+  {% if request_contact.is_logged_in %}
+    {% set membership_contact = request_contact.identifier %}
+
+    <p>Welcome back--> {{ membership_contact }}</p>
+
+
+  {% module "Logbook", 
+    path="../components/modules/Logbook",
+  %}
+   
+  {% dnd_area "dnd_area", class="main" %}
+    {% dnd_section %}
+
+    {% end_dnd_section %}
+  {% end_dnd_area %}
+
+  {% else %}
+      <section class="section-wrapper section-wrapper--large">
+      <p>The page you are trying to view is only available to registered users, please sign in first.</p>
+    
+      
+      {% dnd_area "dnd_area", class="main" %}
+        {% dnd_section %}
+    
+        {% end_dnd_section %}
+      {% end_dnd_area %}
+
+    </section>
+  {% endif %}
+    
+  <script>
+    window.req_contact = {
+      contact: {{ membership_contact|tojson  }},
+    };
+    
+    console.log("contact Data:", window.req_contact.contact);
+  </script>
+    
+  
+  
+    
+{% endblock body %}
