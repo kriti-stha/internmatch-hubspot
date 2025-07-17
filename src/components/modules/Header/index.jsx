@@ -1,4 +1,8 @@
-import { Island, ModuleFields, ImageField } from "@hubspot/cms-components"
+import {
+  Island,
+  ModuleFields,
+  ImageField,
+} from "@hubspot/cms-components/fields"
 import Header from "../../islands/Header.jsx?island"
 
 export const meta = {
