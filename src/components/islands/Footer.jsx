@@ -8,7 +8,7 @@ const Footer = ({ footerImage }) => (
     <div className="footer-container">
       <div className="footer-left">
         <img
-          src={footerImage || defaultFooterImg}
+          src={footerImage?.src || defaultFooterImg}
           alt="InternMatch logo"
           className="footer-logo-img"
         />

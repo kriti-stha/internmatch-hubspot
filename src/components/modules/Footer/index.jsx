@@ -9,11 +9,7 @@ export const meta = {
 
 export const fields = (
   <ModuleFields>
-    <ImageField
-      name="footerImage"
-      label="Footer Logo Image"
-      default="@project/src/assets/internmatch-footer.png"
-    />
+    <ImageField name="footerImage" label="Footer Logo Image" />
   </ModuleFields>
 )
 

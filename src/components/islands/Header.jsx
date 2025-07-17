@@ -8,7 +8,7 @@ const Header = ({ headerImage }) => (
   <header className="header">
     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
       <img
-        src={headerImage || defaultHeaderImg}
+        src={headerImage?.src || defaultHeaderImg}
         alt="InternMatch Logbooks header"
         className="header-img"
         style={{ maxWidth: '500px', width: '100%', height: 'auto', marginBottom: 0, display: 'block' }}

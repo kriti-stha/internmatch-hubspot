@@ -12,7 +12,6 @@ export const fields = (
     <ImageField
       name="headerImage"
       label="Header Image"
-      default="@project/src/assets/internmatch-header.png"
     />
   </ModuleFields>
 )
