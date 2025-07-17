@@ -18,7 +18,7 @@ const Logbooks = ({ fieldValues, hublParameters }) => {
 
   useEffect(() => {
     if (window.req_contact ) {
-      setContactEmail(window?.req_contact?.contact?.identifier || window?.req_contact?.contact.membership_contact|| window.)
+      setContactEmail(window?.req_contact?.contact?.identifier || window?.req_contact?.contact?.membership_contact)
     }
   }, [])
 
