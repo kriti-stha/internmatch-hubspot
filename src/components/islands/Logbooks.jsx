@@ -17,20 +17,21 @@ const Logbooks = ({ fieldValues, hublParameters }) => {
   const [contactEmail, setContactEmail] = useState("")
 
   useEffect(() => {
-    if (window.req_contact ) {
-      setContactEmail(window?.req_contact?.contact?.identifier || window?.req_contact?.contact?.membership_contact)
+    if (window.req_contact) {
+      setContactEmail(
+        window?.req_contact?.contact?.identifier || window?.req_contact?.contact
+      )
     }
   }, [])
 
-  const { logbookData, pipelineStages, loading, error, logbookTicketsByEmail } =
+  const { pipelineStages, loading, error, logbookTicketsByEmail } =
     useLogbookData(contactEmail)
 
   console.log("INFO==>", {
     fieldValues,
     hublParameters,
     logbookTicketsByEmail,
-    logbookData,
-    logbookTicketsByEmail,
+    contactEmail,
   })
 
   useEffect(() => {
@@ -122,7 +123,6 @@ const Logbooks = ({ fieldValues, hublParameters }) => {
   //   },
   // ]
 
- 
   let tickets = []
   if (
     logbookTicketsByEmail &&
@@ -176,7 +176,7 @@ const Logbooks = ({ fieldValues, hublParameters }) => {
       `}</style>
       </div>
     )
-  if (error) return <div style={logbookStyles.error}>Error: {error}</div>
+  // Do not return early on error; show error in table below
 
   if (selectedTicket) {
     return (
@@ -210,7 +210,11 @@ const Logbooks = ({ fieldValues, hublParameters }) => {
         hoveredRow={hoveredRow}
         onRowMouseEnter={handleRowMouseEnter}
         onRowMouseLeave={handleRowMouseLeave}
-        emptyStateMessage="No logbooks found for this user."
+        emptyStateMessage={
+          error
+            ? `An error occured! Please try again later.`
+            : "No logbooks found for this user."
+        }
       />
     </div>
   )
