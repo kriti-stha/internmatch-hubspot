@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from "react"
-import { styles } from "../../styles/detailedLogbook.style"
+import { styles as logbookStyles } from "../../styles/detailedLogbook.style"
 import {
   getStatusAlertStyle,
   contentBoxStyle,
@@ -8,6 +8,8 @@ import {
   detailItemStyle,
 } from "../../helpers/logbook-detail-helpers"
 import { generateSingleLogbookPdf } from "../../utils/pdfGenerator.js"
+import { Button } from "../ui/button.tsx"
+import styles from "../../styles/component.module.css"
 
 const LogbookDetail = ({ ticket, onBackClick, stageIdToLabel }) => {
   if (!ticket) {
@@ -32,20 +34,28 @@ const LogbookDetail = ({ ticket, onBackClick, stageIdToLabel }) => {
   }
 
   return (
-    <div style={styles.container}>
-      <div style={styles.buttonContainer}>
-        <button onClick={onBackClick} style={styles.backButton}>
+    <div style={logbookStyles.container}>
+      <h2 style={logbookStyles.title}>{ticket.properties.subject}</h2>
+      <div style={logbookStyles.buttonContainer}>
+        <Button
+          onClick={onBackClick}
+          variant="default"
+          className={styles.orangeButton}
+        >
           &larr; Back to Logbooks
-        </button>
+        </Button>
         {isClient && (
-          <button onClick={handleDownloadPdf} style={styles.downloadButton}>
+          <Button
+            onClick={handleDownloadPdf}
+            variant="default"
+            className={styles.orangeButton}
+          >
             Download as PDF
-          </button>
+          </Button>
         )}
       </div>
       <div ref={pdfRef}>
-        <h2 style={styles.title}>{ticket.properties.subject}</h2>
-        <div style={styles.detailContainer}>
+        <div style={logbookStyles.detailContainer}>
           <div style={detailItemStyle}>
             <strong>Logbook Date:</strong>
             {ticket.properties.date_of_activity || "-"}
